@@ -11,9 +11,7 @@ headers = {
     'Apikey': f'Api-Key {api_key}',
 }
 
-data = {
-    "payload": notes
-}
+
 
 url = 'https://payload.vextapp.com/hook/T1NLTAMZVR/catch/$(manipal)'
 
