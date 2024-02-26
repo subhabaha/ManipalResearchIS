@@ -21,6 +21,10 @@ url = 'https://payload.vextapp.com/hook/T1NLTAMZVR/catch/$(manipal)'
 def main():
     st.title("Manipal Research Information System")
     notes = st.text_area("Write down the query you want to ask:")
+
+    data = {
+        "payload": notes
+    }
     if st.button("Generate Response"):
         with st.spinner("Generating Response ..."):
             response = requests.post(url, json = data, headers = headers)
