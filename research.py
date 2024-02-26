@@ -1,26 +1,31 @@
-import openai
+import requests
 import streamlit as st
-#from charset_normalizer import md__mypyc
-import config
 
-openai.api_key=config.api_key
+
+
+#API Key
+api_key ='WaOd3n1r.JxLL0NgzS4McGj5xJ1PiumWoURsBP6cH'
+
+headers = {
+    'Content-Type': 'application/json',
+    'Apikey': f'Api-Key {api_key}',
+}
+
+data = {
+    "payload": notes
+}
+
+url = 'https://payload.vextapp.com/hook/T1NLTAMZVR/catch/$(manipal)'
+
 
 def main():
-    st.title("Paraphrase and Extend")
-    notes = st.text_area("Enter Text to Paraphrase and Extend:")
-    if st.button("Generate Writeup"):
-        with st.spinner("Generating Writeup ..."):
-            response = openai.Completion.create(
-              model="text-davinci-003",
-              prompt=f"I want you to paraphrase and extend the text \n\n{notes}\n\nDescription:",
-              temperature=0.7,
-              max_tokens=256,
-              top_p=1,
-              frequency_penalty=0,
-              presence_penalty=0
-            )
-        description = response['choices'][0]['text']
-        st.subheader("Generated Writeup:")
+    st.title("Manipal Research Information System")
+    notes = st.text_area("Write down the query you want to ask:")
+    if st.button("Generate Response"):
+        with st.spinner("Generating Response ..."):
+            response = requests.post(url, json = data, headers = headers)
+        description = response
+        st.subheader("Generated Response")
         st.write(description)
 
 
