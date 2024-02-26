@@ -26,7 +26,7 @@ def main():
     if st.button("Generate Response"):
         with st.spinner("Generating Response ..."):
             response = requests.post(url, json = data, headers = headers)
-        description = response
+        description = response.text
         st.subheader("Generated Response")
         st.write(description)
 
