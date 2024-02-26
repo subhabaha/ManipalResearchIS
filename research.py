@@ -1,6 +1,6 @@
 import requests
 import streamlit as st
-
+import json
 
 
 #API Key
@@ -26,8 +26,12 @@ def main():
     if st.button("Generate Response"):
         with st.spinner("Generating Response ..."):
             response = requests.post(url, json = data, headers = headers)
-        #description = response.text
-        description = response.text[]
+        # Parse the JSON string
+        data = json.loads(response.text)
+
+        
+        desired_text = data["text"]
+        description = desired_text
         st.subheader("Generated Response")
         st.write(description)
 
